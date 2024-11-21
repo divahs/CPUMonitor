@@ -1,0 +1,39 @@
+﻿<Window x:Class="CPUMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        Title="CPU Monitor" Height="700" Width="800">
+    <Grid>
+        <!-- CPU Temperature Chart -->
+        <lvc:CartesianChart Name="cpuChart" Margin="10"
+                            LegendLocation="Right" Height="200" VerticalAlignment="Top">
+        </lvc:CartesianChart>
+
+        <!-- Threshold Settings -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10,220,10,0">
+            <Label Content="Warning Threshold (°C):" VerticalAlignment="Center"/>
+            <TextBox Name="warningThresholdBox" Width="50" Margin="5" Text="70"/>
+            <Label Content="Critical Threshold (°C):" VerticalAlignment="Center"/>
+            <TextBox Name="criticalThresholdBox" Width="50" Margin="5" Text="85"/>
+            <Button Content="Set Thresholds" Click="SetThresholds_Click" Margin="5"/>
+        </StackPanel>
+
+        <!-- Process List -->
+        <DataGrid Name="processGrid" AutoGenerateColumns="False" Margin="10,260,10,100" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName}" Width="*"/>
+                <DataGridTextColumn Header="CPU (%)" Binding="{Binding CpuUsage}" Width="Auto"/>
+                <DataGridTextColumn Header="Memory (MB)" Binding="{Binding MemoryUsage}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Voice Command Status -->
+        <Label Name="voiceCommandStatus" Content="Voice Command: Ready" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10"/>
+
+        <!-- Fan Speed Display -->
+        <Label Name="fanSpeedLabel" Content="Fan Speed: Auto" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" FontSize="16"/>
+
+        <!-- Microphone Toggle Button -->
+        <Button Content="Toggle Voice Command" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="150" Click="ToggleVoiceCommand_Click"/>
+    </Grid>
+</Window>
