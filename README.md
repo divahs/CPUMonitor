@@ -1,0 +1,1 @@
+Code will work differently system to system because each system uses a different fan system. For example, my system uses Lian Li fans. The code uploaded is a simulated code when it comes to controlling fans, however the CPU readings should be accurate as long as its run in admin. 
